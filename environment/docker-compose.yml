@@ -1,0 +1,18 @@
+services:
+  practice_openmm:
+    container_name: practice_openmm
+    build: .
+    working_dir: '/workspace/practice_openMM'
+    tty: true
+    deploy:
+      resources:
+       reservations:
+         devices:
+           - capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - USER_ID=1000
+      - GROUP_ID=1000
+    volumes:
+      - ../:/workspace/practice_openMM
+    command: /bin/bash
